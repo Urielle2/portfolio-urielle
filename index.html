@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Urielle GOMA — Portfolio BTS SIO SLAM</title>
+    <meta name="description"
+        content="Portfolio d'Urielle GOMA, étudiante en BTS SIO option SLAM : projets, stages, veille technologique et compétences.">
+    <meta name="theme-color" content="#0b1020">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Vidéo de fond : fixe, visible sur toute la page -->
+    <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="assets/img/fond-poster.jpg"
+        aria-hidden="true">
+        <source src="assets/video/fond-matrix.mp4" type="video/mp4">
+        <source src="assets/video/fond-matrix.webm" type="video/webm">
+    </video>
+    <div class="bg-veil" aria-hidden="true"></div>
+
+    <div class="progress" aria-hidden="true"></div>
+
+    <button class="video-toggle" type="button" data-state="playing" aria-pressed="false"
+        aria-label="Mettre la vidéo de fond en pause">
+        <svg class="ic-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <rect x="6" y="5" width="4" height="14" rx="1" />
+            <rect x="14" y="5" width="4" height="14" rx="1" />
+        </svg>
+        <svg class="ic-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10-6.5a1 1 0 0 0 0-1.72l-10-6.5A1 1 0 0 0 8 5.5z" />
+        </svg>
+    </button>
+
+
+    <!-- ============ EN-TÊTE ============ -->
+    <header class="site-header">
+        <a href="#accueil" class="avatar" aria-label="Retour à l'accueil">
+            <span class="avatar-initials">UG</span>
+            <!-- 👉 Ajoute ta photo dans assets/img/photo.jpg (carrée de préférence) -->
+            <img src="assets/img/photo.jpg" alt="" onerror="this.remove()">
+        </a>
+
+        <nav id="menu" aria-label="Navigation principale">
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#stage">Stage</a></li>
+                <li><a href="#veille">Veille</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <span class="nav-pill" aria-hidden="true"></span>
+        </nav>
+
+        <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+            <span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+        <!-- ============ ACCUEIL ============ -->
+        <section id="accueil" class="hero">
+            <div class="hero-glow" aria-hidden="true"></div>
+
+            <div class="wrap hero-text">
+                <p class="hello">Bonjour, je suis</p>
+                <h1 class="hero-title" aria-label="Urielle GOMA">
+                    <span class="line"><span>Urielle</span></span>
+                    <span class="line"><span>GOMA</span></span>
+                </h1>
+                <p class="hero-role">Étudiante en BTS SIO, option SLAM</p>
+                <p class="typed-line">
+                    <span class="typed" aria-live="off"></span><span class="caret" aria-hidden="true"></span>
+                </p>
+
+                <div class="hero-cta">
+                    <a class="btn btn-primary" href="#projets">Voir mes projets</a>
+                    <a class="btn btn-ghost" href="assets/G.pdf" target="_blank" rel="noopener">Mon CV (PDF)</a>
+                </div>
+            </div>
+
+            <a href="#apropos" class="scroll-hint" aria-label="Descendre vers la section À propos">
+                <span></span>
+            </a>
+        </section>
+
+        <!-- ============ À PROPOS ============ -->
+        <section id="apropos" class="sheet" data-glow="#27cdd8">
+            <div class="wrap">
+                <h2 class="sec-title"><span>À propos de moi</span></h2>
+
+                <div class="about-grid">
+                    <div class="about-photo" data-reveal>
+                        <div class="hero-photo">
+                            <div class="photo-ring" aria-hidden="true"></div>
+                            <div class="photo-frame">
+                                <span class="photo-initials">UG</span>
+                                <!-- 👉 Ta photo : assets/img/photo.jpg (carrée de préférence) -->
+                                <img src="assets/img/photo.jpg" alt="Portrait d'Urielle GOMA" onerror="this.remove()">
+                            </div>
+                            <span class="chip chip-1">HTML</span>
+                            <span class="chip chip-2">Angular</span>
+                            <span class="chip chip-3">Java</span>
+                            <span class="chip chip-4">Python</span>
+                        </div>
+                    </div>
+
+                    <div class="about-copy">
+                        <p class="about-text" data-reveal style="--i:1">
+                            Je m'appelle <strong>Urielle GOMA</strong>, étudiante en 2<sup>e</sup> année de BTS SIO
+                            option SLAM.
+                            Je suis passionnée par le développement et les nouvelles technologies :
+                            je conçois des applications web et logicielles, du front-end au back-end.
+                            Mon objectif est de devenir développeuse full-stack et de contribuer à des solutions
+                            numériques innovantes.
+                        </p>
+                        <a class="cv-card" href="assets/G.pdf" target="_blank" rel="noopener" data-reveal style="--i:2">
+                            <span class="cv-icon" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                                    <path d="M14 3v5h5" />
+                                    <path d="M9 13h6M9 17h4" />
+                                </svg>
+                            </span>
+                            <span>
+                                <strong>Voir mon CV</strong>
+                                <small>Format PDF</small>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <h3 class="sub-title" data-reveal>Mon parcours</h3>
+                <ol class="timeline">
+                    <li data-reveal style="--i:0">
+                        <span class="dot" aria-hidden="true"></span>
+                        <time>2023 – 2024</time>
+                        <h4>Baccalauréat scientifique</h4>
+                        <p>Obtention du baccalauréat au Congo.</p>
+                        <span class="tag">École GSSAM</span>
+                    </li>
+                    <li data-reveal style="--i:1">
+                        <span class="dot" aria-hidden="true"></span>
+                        <time>2024 – 2025</time>
+                        <h4>Licence en génie logiciel</h4>
+                        <p>Première année de licence.</p>
+                        <span class="tag">Université DGC</span>
+                    </li>
+                    <li data-reveal style="--i:2">
+                        <span class="dot" aria-hidden="true"></span>
+                        <time>2025 – 2026</time>
+                        <h4>BTS SIO option SLAM — 1<sup>re</sup> année</h4>
+                        <p>Développement d'applications, programmation objet et bases de données.</p>
+                        <span class="tag">ESIC</span>
+                    </li>
+                    <li data-reveal style="--i:3">
+                        <span class="dot" aria-hidden="true"></span>
+                        <time>2026 – aujourd'hui</time>
+                        <h4>BTS SIO option SLAM — 2<sup>e</sup> année</h4>
+                        <p>Approfondissement du développement web et logiciel.</p>
+                        <span class="tag">ENC Bessières</span>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============ PROJETS ============ -->
+        <section id="projets" class="sheet" data-glow="#8b6bff">
+            <div class="wrap">
+                <h2 class="sec-title"><span>Mes projets</span></h2>
+                <p class="lead" data-reveal>Trois réalisations de ma première année. Clique sur une carte pour voir le
+                    détail et les captures.</p>
+
+                <div class="projects-grid">
+                    <button class="project-card" data-project="voyage" data-reveal style="--i:0">
+                        <span class="thumb"><img src="assets/img/img.jpg" alt="" loading="lazy"></span>
+                        <span class="card-body">
+                            <h3>Agence de voyage</h3>
+                            <p>Création d'un site vitrine de voyage.</p>
+                            <span class="stack"><i>HTML</i><i>CSS</i><i>VS Code</i></span>
+                        </span>
+                    </button>
+
+                    <button class="project-card" data-project="java" data-reveal style="--i:1">
+                        <span class="thumb"><img src="assets/img/projet2.jpg" alt="" loading="lazy"></span>
+                        <span class="card-body">
+                            <h3>Tarification de places de cinéma</h3>
+                            <p>Application Java avec authentification et tarifs.</p>
+                            <span class="stack"><i>Java</i><i>Eclipse</i></span>
+                        </span>
+                    </button>
+
+                    <button class="project-card" data-project="blog" data-reveal style="--i:2">
+                        <span class="thumb"><img src="assets/img/projet3.jpg" alt="" loading="lazy"></span>
+                        <span class="card-body">
+                            <h3>Blog de recettes</h3>
+                            <p>Recettes, ingrédients et étapes de préparation.</p>
+                            <span class="stack"><i>HTML</i><i>CSS</i><i>VS Code</i></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ STAGE ============ -->
+        <section id="stage" class="sheet" data-glow="#ffb347">
+            <div class="wrap">
+                <h2 class="sec-title"><span>Mon stage</span></h2>
+                <p class="lead" data-reveal>Une expérience en entreprise pour mettre la théorie en pratique.</p>
+
+                <ol class="timeline timeline-stage">
+                    <li data-reveal style="--i:0">
+                        <span class="dot" aria-hidden="true"></span>
+                        <time>Juin – août 2026</time>
+                        <h4>Stagiaire Développeuse fullstack — FenziConnect</h4>
+                        <ul class="missions">
+                            <li>Analyse des dysfonctionnements et résolution des bugs (front-end et back-end) sur
+                                l'application web de l'entreprise</li>
+                            <li>Développement et optimisation de composants d'interface utilisateur avec le framework
+                                Angular</li>
+                            <li>Réalisation de tests unitaires</li>
+                            <li>Utilisation de Git pour le versioning et le suivi de modification de code</li>
+                        </ul>
+                        <span class="stack"><i>Angular</i><i>Front-end</i><i>Back-end</i><i>Tests
+                                unitaires</i><i>Git</i></span>
+
+                        <!-- 👉 Dépose ton rapport dans assets/rapport-stage-fenziconnect.pdf -->
+                        <a class="btn btn-primary report-btn" href="assets/rapport-stage-fenziconnect.pdf"
+                            target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M12 3v12" />
+                                <path d="M7 11l5 5 5-5" />
+                                <path d="M5 21h14" />
+                            </svg>
+                            Télécharger mon rapport de stage
+                        </a>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ============ VEILLE ============ -->
+        <section id="veille" class="sheet" data-glow="#34d3b0">
+            <div class="wrap">
+                <h2 class="sec-title"><span>Veille technologique</span></h2>
+
+                <div class="veille-intro">
+                    <article class="panel" data-reveal>
+                        <h3>Pourquoi cette veille ?</h3>
+                        <p>Dans le cadre de ma formation en BTS SIO, j'ai suivi l'actualité des frameworks pour
+                            comprendre leur rôle, leurs avantages et leurs évolutions, et mieux anticiper les besoins du
+                            marché.</p>
+                    </article>
+                    <article class="panel" data-reveal style="--i:1">
+                        <h3>Qu'est-ce qu'un framework ?</h3>
+                        <p>Un ensemble d'outils, de composants et de conventions qui facilite le développement
+                            d'applications. Il fait gagner du temps, organise le code et impose de bonnes pratiques.</p>
+                    </article>
+                </div>
+
+                <h3 class="sub-title" data-reveal>Frameworks étudiés</h3>
+                <div class="fw-grid">
+                    <div class="fw" data-reveal style="--i:0">
+                        <h4>React</h4>
+                        <p>Framework JavaScript orienté composants, très utilisé pour les interfaces modernes.</p>
+                    </div>
+                    <div class="fw" data-reveal style="--i:1">
+                        <h4>Laravel</h4>
+                        <p>Framework PHP puissant pour le back-end et la gestion de bases de données.</p>
+                    </div>
+                    <div class="fw" data-reveal style="--i:2">
+                        <h4>Django</h4>
+                        <p>Framework Python qui favorise un développement rapide et sécurisé.</p>
+                    </div>
+                    <div class="fw" data-reveal style="--i:3">
+                        <h4>Flutter</h4>
+                        <p>Framework mobile multiplateforme de Google, basé sur le langage Dart.</p>
+                    </div>
+                </div>
+
+                <div class="veille-cols">
+                    <article class="panel" data-reveal>
+                        <h3>Tendances actuelles</h3>
+                        <ul class="ticks">
+                            <li>Montée en puissance des frameworks JavaScript (React, Vue, Angular)</li>
+                            <li>Popularité des frameworks full-stack (Next.js, Nuxt.js)</li>
+                            <li>Importance des frameworks mobiles multiplateformes (Flutter, React Native)</li>
+                            <li>Évolution vers des frameworks plus légers et modulaires</li>
+                        </ul>
+                    </article>
+                    <article class="panel" data-reveal style="--i:1">
+                        <h3>Outils de veille</h3>
+                        <p class="pills"><span>Google Alerts</span><span>Feedly</span><span>Google</span></p>
+                        <h3 class="mt">Synthèse</h3>
+                        <p>Les frameworks sont devenus incontournables : ils améliorent la productivité, gardent un code
+                            plus propre et répondent aux attentes des entreprises. Mon objectif : me perfectionner sur
+                            React et Laravel.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ COMPÉTENCES ============ -->
+        <section id="competences" class="sheet" data-glow="#ff6b9a">
+            <div class="wrap">
+                <h2 class="sec-title"><span>Mes compétences</span></h2>
+
+                <h3 class="sub-title" data-reveal>Compétences techniques</h3>
+                <div class="skill-groups">
+                    <article class="skill-group" data-reveal style="--i:0">
+                        <h4>Développement fullstack</h4>
+                        <p class="chips">
+                            <span>HTML5</span><span>CSS3</span><span>Java</span><span>Python</span><span>Angular</span><span>PHP</span><span>C#</span>
+                        </p>
+                    </article>
+                    <article class="skill-group" data-reveal style="--i:1">
+                        <h4>UX / UI</h4>
+                        <p class="chips"><span>Figma</span><span>Framer</span></p>
+                    </article>
+                    <article class="skill-group" data-reveal style="--i:2">
+                        <h4>Gestion de projet</h4>
+                        <p class="chips"><span>JIRA</span><span>UML</span><span>Merise</span></p>
+                    </article>
+                </div>
+
+                <h3 class="sub-title" data-reveal>Outils utilisés</h3>
+                <div class="tools-grid">
+                    <div class="tool" data-reveal style="--i:0"><img src="assets/img/eclipse.png" alt="" loading="lazy">
+                        <h4>Eclipse</h4>
+                        <p>Environnement de développement pour Java.</p>
+                    </div>
+                    <div class="tool" data-reveal style="--i:1"><img src="assets/img/vs.png" alt="" loading="lazy">
+                        <h4>Visual Studio Code</h4>
+                        <p>Éditeur polyvalent pour le web.</p>
+                    </div>
+                    <div class="tool" data-reveal style="--i:2"><img src="assets/img/py.png" alt="" loading="lazy">
+                        <h4>IDE JetBrains</h4>
+                        <p>Environnement de développement pour Python.</p>
+                    </div>
+                    <div class="tool" data-reveal style="--i:3"><span class="tool-icon" aria-hidden="true"><svg
+                                viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor"
+                                stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="6" cy="6" r="2.5" />
+                                <circle cx="6" cy="18" r="2.5" />
+                                <circle cx="18" cy="8" r="2.5" />
+                                <path d="M6 8.5v7" />
+                                <path d="M18 10.5c0 4-6 3-11 6" />
+                            </svg></span>
+                        <h4>Git</h4>
+                        <p>Versioning et suivi des modifications du code.</p>
+                    </div>
+                    <div class="tool" data-reveal style="--i:4"><span class="tool-icon" aria-hidden="true"><svg
+                                viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor"
+                                stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="6" cy="5.5" r="2.5" />
+                                <circle cx="6" cy="18.5" r="2.5" />
+                                <circle cx="18" cy="18.5" r="2.5" />
+                                <path d="M6 8v8" />
+                                <path d="M13 6h3a2 2 0 0 1 2 2v8" />
+                                <path d="M15 3.5L12.5 6 15 8.5" />
+                            </svg></span>
+                        <h4>GitHub</h4>
+                        <p>Hébergement de dépôts et travail collaboratif.</p>
+                    </div>
+                    <div class="tool" data-reveal style="--i:5"><span class="tool-icon" aria-hidden="true"><svg
+                                viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor"
+                                stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="6" cy="5.5" r="2.5" />
+                                <circle cx="6" cy="18.5" r="2.5" />
+                                <circle cx="18" cy="12" r="2.5" />
+                                <path d="M6 8v8" />
+                                <path d="M6 8c0 4 6 4 9.5 4" />
+                            </svg></span>
+                        <h4>GitLab</h4>
+                        <p>Gestion de dépôts de code.</p>
+                    </div>
+                </div>
+
+                <h3 class="sub-title" data-reveal>Langues</h3>
+                <div class="langs">
+                    <div class="lang" data-reveal style="--i:0">
+                        <div>
+                            <h4>Français</h4><small>Langue maternelle</small>
+                        </div>
+                        <span class="dots" role="img" aria-label="5 sur 5"><i class="on"></i><i class="on"></i><i
+                                class="on"></i><i class="on"></i><i class="on"></i></span>
+                    </div>
+                    <div class="lang" data-reveal style="--i:1">
+                        <div>
+                            <h4>Anglais</h4><small>B1 — intermédiaire</small>
+                        </div>
+                        <span class="dots" role="img" aria-label="3 sur 5"><i class="on"></i><i class="on"></i><i
+                                class="on"></i><i></i><i></i></span>
+                    </div>
+                </div>
+
+                <h3 class="sub-title" data-reveal>Soft skills</h3>
+                <p class="pills big" data-reveal>
+                    <span>Communication</span><span>Esprit d'équipe</span><span>Autonomie dans
+                        l'apprentissage</span><span>Curiosité technique</span><span>Organisation rigoureuse</span>
+                </p>
+
+                <p class="summary" data-reveal>
+                    Étudiante en 2<sup>e</sup> année de BTS SIO option SLAM, je développe des applications web et
+                    logicielles, du front-end au back-end, avec Angular, Java, PHP et Python.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============ CONTACT ============ -->
+        <section id="contact" class="sheet sheet-last" data-glow="#3d8bff">
+            <div class="wrap contact-grid">
+                <div>
+                    <h2 class="sec-title"><span>Contactez-moi</span></h2>
+                    <p class="lead" data-reveal>Une question, une proposition de stage ou d'alternance ? Écris-moi, je
+                        réponds avec plaisir.</p>
+                    <a class="mail-link" href="mailto:gomaurielle08@gmail.com" data-reveal>gomaurielle08@gmail.com</a>
+                </div>
+
+                <form class="contact-form" data-reveal style="--i:1" novalidate>
+                    <label>Votre nom
+                        <input type="text" name="nom" autocomplete="name" placeholder="Prénom Nom" required>
+                    </label>
+                    <label>Votre e-mail
+                        <input type="email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required>
+                    </label>
+                    <label>Votre message
+                        <textarea name="message" rows="5" placeholder="Bonjour Urielle, …" required></textarea>
+                    </label>
+                    <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                    <p class="form-status" role="status" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year">2026</span> Urielle GOMA — Portfolio BTS SIO</p>
+        <a href="#accueil" class="to-top">Retour en haut</a>
+    </footer>
+
+    <!-- ============ FENÊTRE DÉTAIL PROJET ============ -->
+    <dialog class="project-dialog" aria-labelledby="dlg-title">
+        <button class="dlg-close" aria-label="Fermer">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+        </button>
+        <div class="dlg-content">
+            <h3 id="dlg-title"></h3>
+            <p class="dlg-stack"></p>
+            <p class="dlg-text"></p>
+            <div class="dlg-gallery"></div>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
