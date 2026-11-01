@@ -13,46 +13,10 @@
   /* ---------- Année du pied de page ---------- */
   $("#year").textContent = new Date().getFullYear();
 
-  /* ---------- Texte qui s'écrit tout seul ---------- */
-  const phrases = [
-    "Je crée des sites web.",
-    "Je programme en Java et en Python.",
-    "Je vise le développement full-stack.",
-    "Je cherche toujours à apprendre.",
-  ];
-  const typedEl = $(".typed");
-  if (reduceMotion) {
-    typedEl.textContent = phrases[0];
-  } else {
-    let p = 0,
-      c = 0,
-      deleting = false;
-    const tick = () => {
-      const full = phrases[p];
-      c += deleting ? -1 : 1;
-      typedEl.textContent = full.slice(0, c);
-      let delay = deleting ? 28 : 65;
-      if (!deleting && c === full.length) {
-        deleting = true;
-        delay = 1600;
-      } else if (deleting && c === 0) {
-        deleting = false;
-        p = (p + 1) % phrases.length;
-        delay = 400;
-      }
-      setTimeout(tick, delay);
-    };
-    setTimeout(tick, 1400);
-  }
-
-  /* ---------- Vidéo de fond ----------
-     Elle démarre toujours, même si le système demande de réduire les animations.
-     Le bouton en bas à droite permet de la mettre en pause. */
+  /* ---------- Vidéo de fond : toujours en lecture ---------- */
   const bgVideo = $(".bg-video");
-  const vBtn = $(".video-toggle");
   const hero = $("#accueil");
   if (bgVideo) {
-    let userPaused = false;
     const tryPlay = () => {
       const p = bgVideo.play();
       if (p && p.catch) p.catch(() => {});
@@ -63,35 +27,14 @@
       window.addEventListener(
         ev,
         () => {
-          if (bgVideo.paused && !userPaused) tryPlay();
+          if (bgVideo.paused) tryPlay();
         },
         { passive: true },
       ),
     );
-
-    const syncBtn = () => {
-      const playing = !bgVideo.paused;
-      vBtn.dataset.state = playing ? "playing" : "paused";
-      vBtn.setAttribute("aria-pressed", !playing);
-      vBtn.setAttribute(
-        "aria-label",
-        playing
-          ? "Mettre la vidéo de fond en pause"
-          : "Lancer la vidéo de fond",
-      );
-    };
-    bgVideo.addEventListener("play", syncBtn);
-    bgVideo.addEventListener("pause", syncBtn);
-    vBtn.addEventListener("click", () => {
-      if (bgVideo.paused) {
-        userPaused = false;
-        tryPlay();
-      } else {
-        userPaused = true;
-        bgVideo.pause();
-      }
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) tryPlay();
     });
-    syncBtn();
   }
 
   /* ---------- Lueur qui suit la souris (accueil) + halo des cartes ---------- */
@@ -216,6 +159,23 @@
 
   /* ---------- Fenêtre de détail des projets ---------- */
   const projects = {
+    django: {
+      title: "Application web Django",
+      stack: ["Python", "Django"],
+      // Complète avec le sujet de ton projet et tes fonctionnalités
+      text: "Projet de deuxième année réalisé avec Django. Il m'a permis de mettre en pratique la structure d'une application web (modèles, vues, templates) et de découvrir un framework qui favorise un développement rapide et sécurisé.",
+      images: [
+        ["assets/img/django1.png", "Rendu"], //  Ajoute tes captures : ["assets/img/mon-image.jpg", "Description de l'image"]
+        ["assets/img/django2.png", "Rendu"],
+      ],
+    },
+    mininagios: {
+      title: "Mininagios",
+      stack: ["C#"],
+      //  Complète avec le langage utilisé, ce que le projet surveille, etc.
+      text: "Solution de supervision informatique : l'objectif est de surveiller l'état de machines ou de services et de signaler les anomalies.",
+      images: [],
+    },
     voyage: {
       title: "Agence de voyage",
       stack: ["HTML", "CSS", "VS Code"],
@@ -232,7 +192,6 @@
       images: [
         ["assets/img/projet2.jpg", "Code Java dans Eclipse"],
         ["assets/img/p2.jpg", "Code Java : authentification"],
-        ["assets/img/p21.jpg", "Code Java : tarifs"],
       ],
     },
     blog: {
@@ -241,32 +200,41 @@
       text: "Page web de blog présentant plusieurs recettes simples et rapides. La structure met en avant les titres, une description appétissante, les ingrédients, les étapes de préparation et des informations pratiques (temps de cuisson, difficulté, nombre de portions). Une section « Astuce du chef » ajoute une touche personnelle. Ce travail m'a permis de soigner la mise en page et de penser à l'expérience d'un public débutant.",
       images: [
         ["assets/img/projet3.jpg", "Rendu du blog de recettes"],
-        ["assets/img/p3.jpg", "Code HTML du blog (1/3)"],
-        ["assets/img/p31.jpg", "Code HTML du blog (2/3)"],
-        ["assets/img/p32.jpg", "Code HTML du blog (3/3)"],
+        ["assets/img/p3.jpg", "Code HTML du blog"],
       ],
     },
   };
 
   const dlg = $(".project-dialog");
+  const dlgGallery = $(".dlg-gallery");
+  const dlgGithub = $(".dlg-github");
   let lastTrigger = null;
 
+  const openProject = (card) => {
+    const d = projects[card.dataset.project];
+    if (!d) return;
+    lastTrigger = $(".project-open", card);
+    $("#dlg-title").textContent = d.title;
+    const st = $(".dlg-stack");
+    st.className = "dlg-stack stack";
+    st.innerHTML = d.stack.map((s) => `<i>${s}</i>`).join("");
+    $(".dlg-text").textContent = d.text;
+    // le lien GitHub de la fenêtre est celui de la carte (un seul endroit à modifier)
+    dlgGithub.href = $(".gh-link", card).href;
+    dlgGallery.innerHTML = d.images
+      .map(([src, alt]) => `<img src="${src}" alt="${alt}" loading="lazy">`)
+      .join("");
+    dlgGallery.hidden = d.images.length === 0;
+    dlg.scrollTop = 0;
+    dlg.showModal();
+    document.body.classList.add("dlg-open");
+  };
+
   $$(".project-card").forEach((card) => {
-    card.addEventListener("click", () => {
-      const d = projects[card.dataset.project];
-      if (!d) return;
-      lastTrigger = card;
-      $("#dlg-title").textContent = d.title;
-      const st = $(".dlg-stack");
-      st.className = "dlg-stack stack";
-      st.innerHTML = d.stack.map((s) => `<i>${s}</i>`).join("");
-      $(".dlg-text").textContent = d.text;
-      $(".dlg-gallery").innerHTML = d.images
-        .map(([src, alt]) => `<img src="${src}" alt="${alt}" loading="lazy">`)
-        .join("");
-      dlg.scrollTop = 0;
-      dlg.showModal();
-      document.body.classList.add("dlg-open");
+    // un clic n'importe où sur la carte ouvre le détail, sauf sur le lien GitHub
+    card.addEventListener("click", (e) => {
+      if (e.target.closest("a")) return;
+      openProject(card);
     });
   });
   $(".dlg-close").addEventListener("click", () => dlg.close());
@@ -278,36 +246,82 @@
     lastTrigger && lastTrigger.focus({ preventScroll: true });
   });
 
-  /* ---------- Formulaire : ouvre ta messagerie avec le message prérempli ---------- */
+  /* ---------- Formulaire : envoi direct (sans ouvrir de messagerie) ----------
+     Le message arrive dans ta boîte mail via le service gratuit FormSubmit.
+     ⚠️ Au tout premier envoi, FormSubmit t'envoie un e-mail d'activation :
+     clique sur le lien qu'il contient, et c'est bon pour toujours. */
   const form = $(".contact-form");
   const status = $(".form-status");
+  const submitBtn = $('button[type="submit"]', form);
   const MAIL = "gomaurielle08@gmail.com";
+  const ENDPOINT = `https://formsubmit.co/ajax/${MAIL}`;
 
-  form.addEventListener("submit", (e) => {
+  const showStatus = (kind, text) => {
+    status.className = "form-status " + kind;
+    status.textContent = text;
+  };
+
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const { nom, email, message } = form.elements;
+    const { nom, email, message, _honey } = form.elements;
+    if (_honey && _honey.value) return; // robot : on ignore
+
     let ok = true;
     [nom, email, message].forEach((f) => {
       const valid = f.value.trim() !== "" && f.checkValidity();
       f.setAttribute("aria-invalid", !valid);
       if (!valid) ok = false;
     });
-    status.className = "form-status";
     if (!ok) {
-      status.classList.add("err");
-      status.textContent =
-        "Merci de remplir le nom, un e-mail valide et ton message.";
+      showStatus(
+        "err",
+        "Merci de remplir le nom, un e-mail valide et ton message.",
+      );
       return;
     }
-    const subject = encodeURIComponent(
-      `Portfolio : message de ${nom.value.trim()}`,
-    );
-    const body = encodeURIComponent(
-      `${message.value.trim()}\n\n— ${nom.value.trim()} (${email.value.trim()})`,
-    );
-    window.location.href = `mailto:${MAIL}?subject=${subject}&body=${body}`;
-    status.classList.add("ok");
-    status.textContent =
-      "Ta messagerie s'ouvre avec le message prêt à envoyer.";
+
+    const label = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Envoi en cours…";
+    showStatus("", "");
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: nom.value.trim(),
+          email: email.value.trim(),
+          message: message.value.trim(),
+          _subject: `Portfolio : message de ${nom.value.trim()}`,
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !(data.success === true || data.success === "true")) {
+        throw new Error(data.message || "Échec de l'envoi");
+      }
+      showStatus(
+        "ok",
+        "Merci ! Ton message a bien été envoyé, je te réponds très vite.",
+      );
+      form.reset();
+    } catch (err) {
+      showStatus(
+        "err",
+        "L'envoi n'a pas fonctionné. Tu peux m'écrire directement à ",
+      );
+      const a = document.createElement("a");
+      a.href = `mailto:${MAIL}`;
+      a.textContent = MAIL;
+      status.append(a, ".");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = label;
+    }
   });
 })();
