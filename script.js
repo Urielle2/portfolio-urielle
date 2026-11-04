@@ -171,9 +171,9 @@
     },
     mininagios: {
       title: "Mininagios",
-      stack: ["C#"],
+      stack: ["PHP"],
       //  Complète avec le langage utilisé, ce que le projet surveille, etc.
-      text: "Solution de supervision informatique : l'objectif est de surveiller l'état de machines ou de services et de signaler les anomalies.",
+      text: "Mini-Nagios est une application web de supervision de serveurs, conteneurisée avec Docker (PHP/Apache, PostgreSQL, Redis, serveur SMTP de test). Je l’ai développée en programmation orientée objet avec une couche d’accès aux données (pattern Repository), puis durcie séance après séance selon les risques du Top 10 OWASP. J’ai sécurisé l’authentification (hachage Argon2id, enrôlement des comptes par Magic Link, régénération de session, protection contre l’énumération de comptes et les attaques temporelles). J’ai mis en place une journalisation applicative des évènements, avec détection de la force brute et verrouillage temporaire des adresses IP. J’ai appliqué le principe de moindre privilège au niveau du SGBD, avec des rôles distincts (application, audit, lecture seule) et un journal en écriture seule pour garantir la traçabilité. J’ai aussi étudié l’injection SQL de l’attaque à la défense, dans un laboratoire isolé, puis audité le code pour passer à des requêtes préparées. Enfin, j’ai fait évoluer le schéma de la base (groupes de serveurs, modèle de droits par fonction avec table d’association) et j’ai commencé à historiser les mots de passe par déclencheur. Ce projet m’a appris à raisonner en défense en profondeur, où chaque couche de protection limite les dégâts si la précédente cède.",
       images: [],
     },
     voyage: {
